@@ -29,7 +29,8 @@
 <pre>/** Star prefixed comment
  * spreading over multiple
  * lines
- */</pre> In such case, the prefix star is automatically discarded.</p>
+ */</pre> In such case, the prefix star is automatically discarded. To make transition from headerdoc a bit simpler, appledoc also accepts headerdoc style multiline comments:
+<pre>/*! Comment */</pre></p>
 			
 			<h3>Single line comments</h3>			
 			<p>appledoc also handles single line comments that start with three slashes. Two or more single line comments found in consequtive lines are grouped together into a single comment.
@@ -208,7 +209,7 @@ Another paragraph.
     		<h2>Methods and properties description</h2>
     		<p>
     		<ul>
-				<li><code>@return &lt;description&gt;</code>: Provides the description of method or property result. The description may be composed of a single paragraph as described above.</li>
+				<li><code>@return &lt;description&gt;</code>: Provides the description of method or property result. The description may be composed of a single paragraph as described above. Instead of <code>@return</code> you can also use <code>@returns</code> or <code>@result</code>.</li>
 				<li><code>@param &lt;name&gt; &lt;description&gt;</code>: Provides the description of method parameter with the given name. You need to provide description for each parameter or appledoc will log a warning. The description may be composed of a single paragraph as described above.</li>
 				<li><code>@exception &lt;name&gt; &lt;description&gt;</code>: Provides the description of an exception that may be raised by a method. The name of the exception is given with the first parameter. The description may be composed of a single paragraph as described above.</li>
     		</ul>
