@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+	<title>appledoc @ GitHub</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="styles.css"  />
+</head>
+
+<body>
+	<article id="contents" role="main">
+		<div id="header">
+			<div id="download">
+			  <a href="http://github.com/tomaz/appledoc/zipball/master">
+			    <img width="90" src="http://github.com/images/modules/download/zip.png"></a>
+			  <a href="http://github.com/tomaz/appledoc/tarball/master">
+			    <img width="90" src="http://github.com/images/modules/download/tar.png"></a>
+			</div>
+			<a href="http://github.com/tomaz/appledoc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+			<h1>appledoc</h1>
+			<p>Objective-C documentation set generator.</p>
+		</div>
+		<div id="container">
+			<h2>Xcode integration</h2>
+			<div class="cmdlineexamplesection">
+				<p>You can setup Xcode to handle automatic source code documentation generation for you Xcode project. Just add a build script and run appledoc using your desired command line. You can either have it run each time you build or add the script to a separate target to run it manually. The later is especially useful for larger projects which may take significant overhead having run appledoc each time you compile your binary.</p>
+				
+				<p>appledoc can help you integrate source code issues into Xcode by telling Xcode which files and lines have issues like undocumented objects or invalid cross references. It also can tell Xcode whether documentation generation has been succesful or not.</p>
+
+				<div class="cmdlinesection">
+					<a name="logFormat"/>
+					<h3>Xcode compatible log format</h3>
+					<p>appledoc allows you choosing between various output log formats through <code>--logformat</code> cmd line switch. These result in more or less verbose formatting for each log message. But there is special log format suited for Xcode builds:
+	<pre>appledoc
+	--project-name appledoc
+	--project-company "Gentle Bytes"
+	--company-id com.gentlebytes
+	--output ~/help
+	--logformat xcode
+	.</pre>
+					This example builds on <a href="settings-basic.html#minimumCmdLine">minumum command line</a>, changing log format to xcode. If you're running appledoc as Xcode build script, you're incouraged to use this format. It'll format warnings and errors in the way Xcode will be able catching them and displaying them within build results. Even more, clicking them will navigate you straight to the offending line!</p>
+	
+					<div class="warning">
+					<strong>Implementation detail:</strong> With some log formats, appledoc will emit the source code file name and line number inside which the log message call is located. This is appledoc's own source information, primarily useful for debugging purposes - pinpointing the source code in case of troubles. However this renders no useful information of which of your source files has undocumented entity for example. Therefore <code>--logformat xcode</code> uses context aware log formats where applicable. It tells Xcode which of YOUR source files (the files appledoc is actually parsing over) contains an issue and which line the issue is in. Not something you have to be aware of, it should be intuitive by itself, just wrote it here for those that may get confused between the two...
+					</div>
+				</div>
+					
+				<div class="cmdlinesection">
+					<a name="exitCodeThreshold"/>
+					<h3>Controlling appledoc build results</h3>
+					<p>appledoc returns integer value indicating the overall generation result. If everything was fine, 0 is returned, otherwise a positive value. The greater the value, more serious the error. By default appledoc returns the following exit codes:
+						<ul>
+							<li><tt>0</tt>: Success!</li>
+							<li><tt>1</tt>: At least one warning was logged.</li>
+							<li><tt>2</tt>: At least one error was logged.</li>
+							<li><tt>3</tt>: At least one fatal error was logged.</li>
+							<li><tt>250</tt>: Unhandled exception (Oops message).</li>
+						</ul>
+					</p>
+					
+					<p>This may be fine if you treat documentation warnings seriously. However, although warnings indicate there are some issues in your source code comments, this doesn't actually prevent appledoc generating usable documentation, therefore you might want to tell Xcode documentation was generated anyway. appledoc allows you specify exit code threshold below which 0 is returned regardless of the actual result:
+	<pre>appledoc
+	--project-name appledoc
+	--project-company "Gentle Bytes"
+	--company-id com.gentlebytes
+	--output ~/help
+	--exit-threshold 2
+	.</pre>
+					This will tell appledoc to only return non zero if indicated return code is 2 or greater, reporting success for all lower exit codes. This effectively returns success in case warnings were logged. Similarly, you could suppress more serious errors, although that is not recommended.</p>
+	
+					<div class="warning">
+					<strong>Note:</strong> Due to the way exit threshold values are used, values smaller than 2 don't affect reported result.
+					</div>
+				</div>
+				
+			</div>
+
+			<p><a href="settings.html#examples">Back to settings</a></p>
+		</div>
+		<div id="aside">
+			<h2>Contents</h2>
+			<p>
+			<ul>
+				<li><a href="index.html">About</a></li>
+				<li><a href="comments.html">Comments</a></li>
+				<li><a href="settings.html">Settings</a></li>
+			</ul>
+			</p>
+		</div>
+		<div id="footer">
+			&copy; 2009-2010 <a href="http://gentlebytes.com">Gentle Bytes</a>. All rights reserved.
+		</div>
+	</article>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-11836532-1");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+	<script type="text/javascript">
+    var GoSquared={};
+    GoSquared.acct = "GSN-255527-N";
+    (function(w){
+        function gs(){
+            w._gstc_lt=+(new Date); var d=document;
+            var g = d.createElement("script"); g.type = "text/javascript"; g.async = true; g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+            var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(g, s);
+        }
+        w.addEventListener?w.addEventListener("load",gs,false):w.attachEvent("onload",gs);
+    })(window);
+	</script>
+</body>
+
+</html>
