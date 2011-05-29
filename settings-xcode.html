@@ -31,13 +31,13 @@
 					<a name="logFormat"/>
 					<h3>Xcode compatible log format</h3>
 					<p>appledoc allows you choosing between various output log formats through <code>--logformat</code> cmd line switch. These result in more or less verbose formatting for each log message. But there is special log format suited for Xcode builds:
-	<pre>appledoc
-	--project-name appledoc
-	--project-company "Gentle Bytes"
-	--company-id com.gentlebytes
-	--output ~/help
-	--logformat xcode
-	.</pre>
+<pre>appledoc
+--project-name appledoc
+--project-company "Gentle Bytes"
+--company-id com.gentlebytes
+--output ~/help
+--logformat xcode
+.</pre>
 					This example builds on <a href="settings-basic.html#minimumCmdLine">minumum command line</a>, changing log format to xcode. If you're running appledoc as Xcode build script, you're incouraged to use this format. It'll format warnings and errors in the way Xcode will be able catching them and displaying them within build results. Even more, clicking them will navigate you straight to the offending line!</p>
 	
 					<div class="warning">
@@ -59,13 +59,13 @@
 					</p>
 					
 					<p>This may be fine if you treat documentation warnings seriously. However, although warnings indicate there are some issues in your source code comments, this doesn't actually prevent appledoc generating usable documentation, therefore you might want to tell Xcode documentation was generated anyway. appledoc allows you specify exit code threshold below which 0 is returned regardless of the actual result:
-	<pre>appledoc
-	--project-name appledoc
-	--project-company "Gentle Bytes"
-	--company-id com.gentlebytes
-	--output ~/help
-	--exit-threshold 2
-	.</pre>
+<pre>appledoc
+--project-name appledoc
+--project-company "Gentle Bytes"
+--company-id com.gentlebytes
+--output ~/help
+--exit-threshold 2
+.</pre>
 					This will tell appledoc to only return non zero if indicated return code is 2 or greater, reporting success for all lower exit codes. This effectively returns success in case warnings were logged. Similarly, you could suppress more serious errors, although that is not recommended.</p>
 	
 					<div class="warning">

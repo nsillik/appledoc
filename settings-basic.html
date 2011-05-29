@@ -25,21 +25,24 @@
 			<div class="cmdlineexamplesection">
 				<p>Find some examples of command line usage below. Each command line switch is written in it's own line to make the output more readable; switches should be delimited with space normally!</p>
 				
-				<a name="minimumCmdLine"></a>
-				<h3>Minimum command line</h3>
-				<p>
+				<div class="cmdlinesection">
+					<a name="minimumCmdLine"></a>
+					<h3>Minimum command line</h3>
+					<p>
 <pre>appledoc
 --project-name appledoc
 --project-company "Gentle Bytes"
 --company-id com.gentlebytes
 --output ~/help
 .</pre>
-				Parses files from current directory and generates HTML files in the given output path. HTML files are then used to generate documentation set (in given output path) and this is finally moved to shared folder where Xcode searches documentation sets. Xcode is also instructed to reload documentation, so any change is immediately visible.</p>
+					Parses files from current directory and generates HTML files in the given output path. HTML files are then used to generate documentation set (in given output path) and this is finally moved to shared folder where Xcode searches documentation sets. Xcode is also instructed to reload documentation, so any change is immediately visible.</p>
+				</div>
 				
 				
-				<a name="multipleSourcesCmdLine"></a>
-				<h3>Parsing from multiple locations</h3>
-				<p>All command line arguments after the last switch are considered as source paths. Each path is validated and as long as all are valid directory or file names, appledoc uses them for parsing. If the path is directory, it's recursively parsed for all source files. If path is file, it's parsed as source file:
+				<div class="cmdlinesection">
+					<a name="multipleSourcesCmdLine"></a>
+					<h3>Parsing from multiple locations</h3>
+					<p>All command line arguments after the last switch are considered as source paths. Each path is validated and as long as all are valid directory or file names, appledoc uses them for parsing. If the path is directory, it's recursively parsed for all source files. If path is file, it's parsed as source file:
 <pre>appledoc
 --project-name appledoc
 --project-company "Gentle Bytes"
@@ -49,13 +52,15 @@
 ~/Projects/Frameworks/SomeHeader.h
 ~/Projects/Frameworks/AnotherFile.m
 .</pre>
-				This extends previous example by including all files from ~/Projects/Common directory and it's subdirectories and ~/Projects/Frameworks/SomeHeader.h and ~/Projects/Frameworks/AnotherFile.m files besides the files from current directory.</p>			
-				<p>This allows you to include files regardless of where they reside on your computer. For example, it may be used to include headers from frameworks or libraries your project uses or simply to only parse a subset of your project files.</p>
+					This extends previous example by including all files from ~/Projects/Common directory and it's subdirectories and ~/Projects/Frameworks/SomeHeader.h and ~/Projects/Frameworks/AnotherFile.m files besides the files from current directory.</p>			
+					<p>This allows you to include files regardless of where they reside on your computer. For example, it may be used to include headers from frameworks or libraries your project uses or simply to only parse a subset of your project files.</p>
+				</div>
 				
 				
-				<a name="ignoreCmdLine"></a>
-				<h3>Ignore paths</h3>
-				<p>You can instruct appledoc to ignore any number of paths or files using <code>--ignore</code> switches. This is useful if your project includes third party source files for example (it's much easier to put these files into a subfolder to simplify ignoring):
+				<div class="cmdlinesection">
+					<a name="ignoreCmdLine"></a>
+					<h3>Ignore paths</h3>
+					<p>You can instruct appledoc to ignore any number of paths or files using <code>--ignore</code> switches. This is useful if your project includes third party source files for example (it's much easier to put these files into a subfolder to simplify ignoring):
 <pre>appledoc
 --project-name appledoc
 --project-company "Gentle Bytes"
@@ -64,27 +69,30 @@
 --ignore Common
 --ignore .m
 .</pre>
-				Using this command line would effectively ignore all files in ./Common including all subdirectories. Additionally it would ignore all files and directories with extension .m.</p>
-				<p>Each --ignore switch takes a single path that should be ignored while parsing. It works very simply: each directory or file found in the given source paths (. in this case) is checked and if it ends with one of the ignore values, the path is skipped. Or put in other words: <code>[NSString hasSuffix:]</code> is sent to each source file or directory to validate ignored files.</p>
-
-				<div class="warning">
-				<p><strong>Important:</strong> Note that --ignore strings don't accept * and ? chars for unknown chars matching! However if the string starts with a star (*), the star is removed, so <code>--ignore *.m</code> is internally translated to <code>--ignore .m</code> for your convenience. But star in the middle doesn't work, so this <code>--ignore path/subpath/*.m</code> would not ignore all .m files in path/subpath as expected - in fact, it would only match files or directories which names end with path/subpath/*.m!</p>
+					Using this command line would effectively ignore all files in ./Common including all subdirectories. Additionally it would ignore all files and directories with extension .m.</p>
+					<p>Each --ignore switch takes a single path that should be ignored while parsing. It works very simply: each directory or file found in the given source paths (. in this case) is checked and if it ends with one of the ignore values, the path is skipped. Or put in other words: <code>[NSString hasSuffix:]</code> is sent to each source file or directory to validate ignored files.</p>
+	
+					<div class="warning">
+					<p><strong>Important:</strong> Note that --ignore strings don't accept * and ? chars for unknown chars matching! However if the string starts with a star (*), the star is removed, so <code>--ignore *.m</code> is internally translated to <code>--ignore .m</code> for your convenience. But star in the middle doesn't work, so this <code>--ignore path/subpath/*.m</code> would not ignore all .m files in path/subpath as expected - in fact, it would only match files or directories which names end with path/subpath/*.m!</p>
+					</div>
 				</div>
 				
 				
-				<a name="projectSettings"></a>
-				<h3>Project settings</h3>
-				<p>You can use <a href="settings.html#projectSettings">project settings</a> file for specifying appledoc parameters:
+				<div class="cmdlinesection">
+					<a name="projectSettings"></a>
+					<h3>Project settings</h3>
+					<p>You can use <a href="settings.html#projectSettings">project settings</a> file for specifying appledoc parameters:
 <pre>appledoc .</pre>
-				This command line would check current directory for a file <code>AppledocSettings.plist</code>. If found, the file would be read in and all parameters from it used for generating the documentation. Note that current dir would also be searched for any source file.</p>
-				
-				<p>If you'd like to use different file name, you can also use this:
+					This command line would check current directory for a file <code>AppledocSettings.plist</code>. If found, the file would be read in and all parameters from it used for generating the documentation. Note that current dir would also be searched for any source file.</p>
+					
+					<p>If you'd like to use different file name, you can also use this:
 <pre>appledoc ~/path/project.plist</pre>
-				This reads in the given file and applies all parameters from it. You have freedom to choose any file name this way, but you must use .plist extension in order for appledoc distinguish it from a source file. Note that in this case, the settings file must contain at list one input path. If not, you must include at least one path through command line; for example:
+					This reads in the given file and applies all parameters from it. You have freedom to choose any file name this way, but you must use .plist extension in order for appledoc distinguish it from a source file. Note that in this case, the settings file must contain at list one input path. If not, you must include at least one path through command line; for example:
 <pre>appledoc ~/path/project.plist ~/MyProject</pre>
-				</p>
-				 
-				 <p>Read more about project settings <a href="settings.html#projectSettings">here</a>.</p>
+					</p>
+					 
+					 <p>Read more about project settings <a href="settings.html#projectSettings">here</a>.</p>
+				</div>
 			</div>
 			
 			<p><a href="settings.html#examples">Back to settings</a></p>
