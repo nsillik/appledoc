@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
-#xcodebuild
+
+xcodebuild
+
+if [ $? -ne 0 ]
+	then
+		echo "There was an error building; please check the build output, resolve any problems, and try again"
+fi
+
+
 echo $PATH | awk -F : '{for (i=1;i<=NF;i++) {print $i}}' | grep $HOME/bin > /dev/null
 
 if [ $? -ne 0 ]
